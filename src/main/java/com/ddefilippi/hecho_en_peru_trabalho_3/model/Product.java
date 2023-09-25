@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 @Data
 @AllArgsConstructor
@@ -14,6 +15,11 @@ public class Product {
 
     @Id
     @GeneratedValue(generator = "product_generator")
+    @GenericGenerator(
+            name = "product_generator",
+            parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "PROD"),
+            strategy = "com.ddefilippi.hecho_en_peru.id_generator.IdGenerator"
+    )
     private String idProduct;
     private String name;
     private double price;
