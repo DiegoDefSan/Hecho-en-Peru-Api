@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,11 @@ public class Handcraft {
 
     @Id
     @GeneratedValue(generator = "handcraft_generator")
+    @GenericGenerator(
+            name = "product_generator",
+            parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "HAND"),
+            strategy = "com.ddefilippi.hecho_en_peru.id_generator.IdGenerator"
+    )
     private String idHandcraft;
     private String name;
     private String history;
