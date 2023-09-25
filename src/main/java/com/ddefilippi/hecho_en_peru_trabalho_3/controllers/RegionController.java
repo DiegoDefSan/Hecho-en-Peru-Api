@@ -18,13 +18,15 @@ public class RegionController {
     @Autowired
     private RegionService regionService;
 
+    @PostMapping("addRegions")
+    public List<Region> addRegions(List<Region> regions) {
+        return regionService.saveRegions(regions);
+    }
+
     @GetMapping
     public List<Region> getRegions() {
         return regionService.getRegions();
     }
 
-    @PostMapping
-    public List<Region> saveRegions(List<Region> regions) {
-        return regionService.saveRegions(regions);
-    }
+
 }

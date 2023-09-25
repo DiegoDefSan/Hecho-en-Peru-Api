@@ -23,8 +23,8 @@ public class HandcraftController {
         return handcraftService.getHandcrafts();
     }
 
-    @PostMapping
-    public List<Handcraft> saveHandcrafts(List<Handcraft> handcraftList) {
+    @PostMapping("/addHandcrafts")
+    public List<Handcraft> addHandcrafts(List<Handcraft> handcraftList) {
         return handcraftService.saveHandcrafts(handcraftList);
     }
 

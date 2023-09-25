@@ -15,14 +15,15 @@ public class HandcraftService {
     @Autowired
     private HandcraftRepository handcraftRepository;
 
+    public List<Handcraft> getHandcrafts() {
+        return handcraftRepository.findAll();
+    }
     // Save categories
     public List<Handcraft> saveHandcrafts(List<Handcraft> handcraftList) {
         return handcraftRepository.saveAll(handcraftList);
     }
     // List categories
-    public List<Handcraft> getHandcrafts() {
-        return handcraftRepository.findAll();
-    }
+
 
 
 }

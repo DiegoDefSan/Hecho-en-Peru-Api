@@ -22,8 +22,8 @@ public class CategoryController {
         return categoryService.getCategories();
     }
 
-    @PostMapping
-    public List<Category> saveCategories(List<Category> categories) {
+    @PostMapping("/addCategories")
+    public List<Category> addCategories(List<Category> categories) {
         return categoryService.saveCategories(categories);
     }
 }

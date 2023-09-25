@@ -13,13 +13,13 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    // Save categories
-    public List<Category> saveCategories(List<Category> categories) {
-        return categoryRepository.saveAll(categories);
-    }
     // List categories
     public List<Category> getCategories() {
         return categoryRepository.findAll();
+    }
+
+    public List<Category> saveCategories(List<Category> categories) {
+        return categoryRepository.saveAll(categories);
     }
 
 
