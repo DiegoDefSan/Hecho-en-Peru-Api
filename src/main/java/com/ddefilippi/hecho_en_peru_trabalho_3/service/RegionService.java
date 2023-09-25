@@ -14,11 +14,11 @@ public class RegionService {
     private RegionRepository regionRepository;
 
     // Save categories
-    public List<Region> saveCategories(List<Region> regions) {
+    public List<Region> saveRegions(List<Region> regions) {
         return regionRepository.saveAll(regions);
     }
     // List categories
-    public List<Region> getCategories() {
+    public List<Region> getRegions() {
         return regionRepository.findAll();
     }
 
