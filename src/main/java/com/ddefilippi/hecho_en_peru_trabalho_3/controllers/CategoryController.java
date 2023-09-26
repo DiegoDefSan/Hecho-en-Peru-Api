@@ -20,12 +20,8 @@ public class CategoryController {
     }
 
     @PostMapping("/addCategories")
-    public List<Category> addCategories(List<Category> categories) {
+    public List<Category> addCategories(@RequestBody List<Category> categories) {
         return categoryService.saveCategories(categories);
     }
 
-    @PostMapping("/addCategory")
-    public Category addCategory(@RequestBody Category category) {
-        return categoryService.saveCategory(category);
-    }
 }
