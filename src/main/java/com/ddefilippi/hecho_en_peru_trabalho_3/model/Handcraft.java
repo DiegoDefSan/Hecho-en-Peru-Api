@@ -21,14 +21,14 @@ public class Handcraft {
     @Id
     @GeneratedValue(generator = "handcraft_generator")
     @GenericGenerator(
-            name = "product_generator",
+            name = "handcraft_generator",
             parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "HAND"),
-            strategy = "com.ddefilippi.hecho_en_peru.id_generator.IdGenerator"
+            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.id_generator.IdGenerator"
     )
     private String idHandcraft;
     private String name;
     private String history;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "handcraft")
     private List<Product> products = new ArrayList<>();
 }
