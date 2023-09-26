@@ -3,11 +3,7 @@ package com.ddefilippi.hecho_en_peru_trabalho_3.controllers;
 import com.ddefilippi.hecho_en_peru_trabalho_3.model.Region;
 import com.ddefilippi.hecho_en_peru_trabalho_3.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +14,8 @@ public class RegionController {
     @Autowired
     private RegionService regionService;
 
-    @PostMapping("addRegions")
-    public List<Region> addRegions(List<Region> regions) {
+    @PostMapping("/addRegions")
+    public List<Region> addRegions(@RequestBody List<Region> regions) {
         return regionService.saveRegions(regions);
     }
 
