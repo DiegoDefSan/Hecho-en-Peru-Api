@@ -18,12 +18,8 @@ public class HandcraftService {
     public List<Handcraft> getHandcrafts() {
         return handcraftRepository.findAll();
     }
-    // Save categories
+
     public List<Handcraft> saveHandcrafts(List<Handcraft> handcraftList) {
         return handcraftRepository.saveAll(handcraftList);
     }
-    // List categories
-
-
-
 }

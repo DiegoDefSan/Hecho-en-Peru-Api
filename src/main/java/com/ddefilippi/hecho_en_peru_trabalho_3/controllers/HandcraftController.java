@@ -4,10 +4,7 @@ import com.ddefilippi.hecho_en_peru_trabalho_3.model.Handcraft;
 import com.ddefilippi.hecho_en_peru_trabalho_3.service.HandcraftService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class HandcraftController {
     }
 
     @PostMapping("/addHandcrafts")
-    public List<Handcraft> addHandcrafts(List<Handcraft> handcraftList) {
+    public List<Handcraft> addHandcrafts(@RequestBody List<Handcraft> handcraftList) {
         return handcraftService.saveHandcrafts(handcraftList);
     }
 
