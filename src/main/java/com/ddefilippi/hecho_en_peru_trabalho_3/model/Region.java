@@ -21,14 +21,14 @@ public class Region {
     @Id
     @GeneratedValue(generator = "region_generator")
     @GenericGenerator(
-            name = "product_generator",
+            name = "region_generator",
             parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "REG"),
-            strategy = "com.ddefilippi.hecho_en_peru.id_generator.IdGenerator"
+            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.id_generator.IdGenerator"
     )
     private String idRegion;
     private String name;
     private String history;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "region")
     private List<Product> products = new ArrayList<>();
 }

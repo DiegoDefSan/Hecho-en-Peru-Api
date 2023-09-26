@@ -21,9 +21,9 @@ public class Category {
     @Id
     @GeneratedValue(generator = "category_generator")
     @GenericGenerator(
-            name = "product_generator",
+            name = "category_generator",
             parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "CAT"),
-            strategy = "com.ddefilippi.hecho_en_peru.id_generator.IdGenerator"
+            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.id_generator.IdGenerator"
     )
     private String idCategory;
     private String name;

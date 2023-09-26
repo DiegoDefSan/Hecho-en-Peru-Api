@@ -30,7 +30,7 @@ public class IdGenerator implements IdentifierGenerator, Configurable {
 
 
 
-        Long max = ids.map(e -> e.toString().replace(prefix, ""))
+        Long max = ids.map(e -> e.toString().replace(prefix + "-", ""))
                 .mapToLong(e -> Long.parseLong((String) e))
                 .max()
                 .orElse(0L);

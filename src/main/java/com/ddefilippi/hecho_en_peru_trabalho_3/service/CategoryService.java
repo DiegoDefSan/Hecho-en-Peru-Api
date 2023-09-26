@@ -22,5 +22,7 @@ public class CategoryService {
         return categoryRepository.saveAll(categories);
     }
 
-
+    public Category saveCategory(Category category) {
+        return categoryRepository.save(category);
+    }
 }
