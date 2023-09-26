@@ -1,5 +1,6 @@
 package com.ddefilippi.hecho_en_peru_trabalho_3.service;
 
+import com.ddefilippi.hecho_en_peru_trabalho_3.exception.HighlightedEntityException;
 import com.ddefilippi.hecho_en_peru_trabalho_3.model.Category;
 import com.ddefilippi.hecho_en_peru_trabalho_3.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,17 @@ public class CategoryService {
     }
 
     public List<Category> saveCategories(List<Category> categories) {
-        return categoryRepository.saveAll(categories);
+
+        // If all categories have id = null, save all
+        boolean isAllCategoryWithIdNull = categories.stream()
+                .allMatch(category -> category.getIdCategory() == null);
+
+
+        if (isAllCategoryWithIdNull) {
+            return categoryRepository.saveAll(categories);
+        }
+
+        // If any category has id != null, throw exception
+        throw new HighlightedEntityException("Trying to save a highlighted object");
     }
 }
