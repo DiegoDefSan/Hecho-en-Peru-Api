@@ -1,6 +1,8 @@
 package com.ddefilippi.hecho_en_peru_trabalho_3.repository;
 
 import com.ddefilippi.hecho_en_peru_trabalho_3.model.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -94,5 +96,18 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "WHERE p.category.idCategory = :idCategory AND p.region.idRegion = :idRegion " +
             "ORDER BY p.idProduct")
     List<Product> getProductsByCategoryIdAndRegionId(String idCategory, String idRegion);
+
+    // Get products by page
+    @Query (
+            value = "SELECT p " +
+                    "FROM Product p " +
+                    "LEFT OUTER JOIN FETCH p.category " +
+                    "LEFT OUTER JOIN FETCH p.handcraft " +
+                    "LEFT OUTER JOIN FETCH p.region " +
+                    "ORDER BY p.idProduct",
+            countQuery = "SELECT COUNT(p) FROM Product p"
+    )
+    Page<Product> getProductsByPage(Pageable pageable);
+
 }
 
