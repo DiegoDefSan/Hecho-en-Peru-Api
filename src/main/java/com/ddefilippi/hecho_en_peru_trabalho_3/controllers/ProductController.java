@@ -64,7 +64,7 @@ public class ProductController {
         return productService.getProductsByRegionId(idRegion);
     }
 
-    @GetMapping("/price_range/min_price={minPrice}&max_price={maxPrice}")
+    @GetMapping("/price_range?min_price={minPrice}&max_price={maxPrice}")
     public List<Product> getProductsByPriceRange(@PathVariable Double minPrice, @PathVariable Double maxPrice) {
         return productService.getProductsByPriceRange(minPrice, maxPrice);
     }
