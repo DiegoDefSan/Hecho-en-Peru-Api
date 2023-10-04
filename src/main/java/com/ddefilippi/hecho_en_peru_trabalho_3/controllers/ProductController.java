@@ -3,7 +3,11 @@ package com.ddefilippi.hecho_en_peru_trabalho_3.controllers;
 
 import com.ddefilippi.hecho_en_peru_trabalho_3.model.Product;
 import com.ddefilippi.hecho_en_peru_trabalho_3.service.ProductService;
+import com.ddefilippi.hecho_en_peru_trabalho_3.util.PagedProducts;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -80,8 +84,23 @@ public class ProductController {
         return productService.getProductsOrderByPriceDesc();
     }
 
-    @GetMapping("category/{idCategory}/region/{idRegion}")
+    @GetMapping("/category/{idCategory}/region/{idRegion}")
     public List<Product> getProductsByCategoryIdAndRegionId(@PathVariable String idCategory, @PathVariable String idRegion) {
         return productService.getProductsByCategoryIdAndRegionId(idCategory, idRegion);
     }
+
+    @GetMapping("/paged")
+    public PagedProducts getPagedProducts(
+            @RequestParam(name="page", defaultValue = "0") int page,
+            @RequestParam(name="size", defaultValue = "1") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> products = productService.getProductsByPage(pageable);
+        return new PagedProducts(
+                products.getTotalElements(),
+                products.getTotalPages(),
+                products.getNumber(),
+                products.getContent()
+        );
+    }
+
 }
