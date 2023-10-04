@@ -47,7 +47,7 @@ public class ProductService {
     }
 
     public List<Product> getProducts() {
-        return productRepository.findAll();
+        return productRepository.getAllProducts();
     }
 
     public String deleteProduct(String id) {
@@ -74,5 +74,45 @@ public class ProductService {
                 );
 
         return productRepository.save(product);
+    }
+
+    // Get products by category id
+    public List<Product> getProductsByCategoryId(String idCategory) {
+        return productRepository.getProductsByCategoryId(idCategory);
+    }
+
+    // Get products by handcraft id
+    public List<Product> getProductsByHandcraftId(String idHandcraft) {
+        return productRepository.getProductsByHandcraftId(idHandcraft);
+    }
+
+    // Get products by region id
+    public List<Product> getProductsByRegionId(String idRegion) {
+        return productRepository.getProductsByRegionId(idRegion);
+    }
+
+    // Get products which prices are between minPrice and maxPrice
+    public List<Product> getProductsByPriceRange(Double minPrice, Double maxPrice) {
+        return productRepository.getProductsByPriceRange(minPrice, maxPrice);
+    }
+
+    // Get products by name
+    public List<Product> getProductsByName(String name) {
+        return productRepository.getProductsByName(name);
+    }
+
+    // Get products order by price asc
+    public List<Product> getProductsOrderByPriceAsc() {
+        return productRepository.getProductsOrderByPriceAsc();
+    }
+
+    // Get products order by price desc
+    public List<Product> getProductsOrderByPriceDesc() {
+        return productRepository.getProductsOrderByPriceDesc();
+    }
+
+    // Get products by category and region ids
+    public List<Product> getProductsByCategoryIdAndRegionId(String idCategory, String idRegion) {
+        return productRepository.getProductsByCategoryIdAndRegionId(idCategory, idRegion);
     }
 }
