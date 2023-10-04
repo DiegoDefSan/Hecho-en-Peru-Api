@@ -44,4 +44,44 @@ public class ProductController {
     public Product updateProduct(@RequestBody Product product) {
         return productService.updateProduct(product);
     }
+
+    @GetMapping("/category/{idCategory}")
+    public List<Product> getProductsByCategoryId(@PathVariable String idCategory) {
+        return productService.getProductsByCategoryId(idCategory);
+    }
+
+    @GetMapping("/handcraft/{idHandcraft}")
+    public List<Product> getProductsByHandicraftId(@PathVariable String idHandcraft) {
+        return productService.getProductsByHandcraftId(idHandcraft);
+    }
+
+    @GetMapping("/region/{idRegion}")
+    public List<Product> getProductsByRegionId(@PathVariable String idRegion) {
+        return productService.getProductsByRegionId(idRegion);
+    }
+
+    @GetMapping("/price_range/min_price={minPrice}&max_price={maxPrice}")
+    public List<Product> getProductsByPriceRange(@PathVariable Double minPrice, @PathVariable Double maxPrice) {
+        return productService.getProductsByPriceRange(minPrice, maxPrice);
+    }
+
+    @GetMapping("/name/{name}")
+    public List<Product> getProductsByName(@PathVariable String name) {
+        return productService.getProductsByName(name);
+    }
+
+    @GetMapping("/order_by_price/asc")
+    public List<Product> getProductsOrderByPriceAsc() {
+        return productService.getProductsOrderByPriceAsc();
+    }
+
+    @GetMapping("/order_by_price/desc")
+    public List<Product> getProductsOrderByPriceDesc() {
+        return productService.getProductsOrderByPriceDesc();
+    }
+
+    @GetMapping("category/{idCategory}/region/{idRegion}")
+    public List<Product> getProductsByCategoryIdAndRegionId(@PathVariable String idCategory, @PathVariable String idRegion) {
+        return productService.getProductsByCategoryIdAndRegionId(idCategory, idRegion);
+    }
 }
