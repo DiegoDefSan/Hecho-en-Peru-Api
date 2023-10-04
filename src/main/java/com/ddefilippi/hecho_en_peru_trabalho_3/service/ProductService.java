@@ -7,6 +7,8 @@ import com.ddefilippi.hecho_en_peru_trabalho_3.model.Product;
 import com.ddefilippi.hecho_en_peru_trabalho_3.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -114,5 +116,10 @@ public class ProductService {
     // Get products by category and region ids
     public List<Product> getProductsByCategoryIdAndRegionId(String idCategory, String idRegion) {
         return productRepository.getProductsByCategoryIdAndRegionId(idCategory, idRegion);
+    }
+
+    // Get products by page
+    public Page<Product> getProductsByPage(Pageable pageable) {
+        return productRepository.getProductsByPage(pageable);
     }
 }
