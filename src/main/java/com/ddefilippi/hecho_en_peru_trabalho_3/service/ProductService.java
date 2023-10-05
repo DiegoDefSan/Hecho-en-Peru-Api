@@ -4,7 +4,10 @@ import com.ddefilippi.hecho_en_peru_trabalho_3.exception.EntityNotFoundException
 import com.ddefilippi.hecho_en_peru_trabalho_3.exception.HighlightedEntityException;
 import com.ddefilippi.hecho_en_peru_trabalho_3.exception.TransientEntityException;
 import com.ddefilippi.hecho_en_peru_trabalho_3.model.Product;
+import com.ddefilippi.hecho_en_peru_trabalho_3.repository.CategoryRepository;
+import com.ddefilippi.hecho_en_peru_trabalho_3.repository.HandcraftRepository;
 import com.ddefilippi.hecho_en_peru_trabalho_3.repository.ProductRepository;
+import com.ddefilippi.hecho_en_peru_trabalho_3.repository.RegionRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +21,12 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private HandcraftRepository handcraftRepository;
+    @Autowired
+    private RegionRepository regionRepository;
 
     public Product saveProduct(Product product) {
         if (product.getIdProduct() == null) {
@@ -80,16 +89,29 @@ public class ProductService {
 
     // Get products by category id
     public List<Product> getProductsByCategoryId(String idCategory) {
+        categoryRepository.findById(idCategory)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Category " + idCategory + " not found")
+                );
+
         return productRepository.getProductsByCategoryId(idCategory);
     }
 
     // Get products by handcraft id
     public List<Product> getProductsByHandcraftId(String idHandcraft) {
+        handcraftRepository.findById(idHandcraft)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Handcraft " + idHandcraft + " not found")
+                );
         return productRepository.getProductsByHandcraftId(idHandcraft);
     }
 
     // Get products by region id
     public List<Product> getProductsByRegionId(String idRegion) {
+        regionRepository.findById(idRegion)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Region " + idRegion + " not found")
+                );
         return productRepository.getProductsByRegionId(idRegion);
     }
 
@@ -115,6 +137,14 @@ public class ProductService {
 
     // Get products by category and region ids
     public List<Product> getProductsByCategoryIdAndRegionId(String idCategory, String idRegion) {
+        categoryRepository.findById(idCategory)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Category " + idCategory + " not found")
+                );
+        regionRepository.findById(idRegion)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Region " + idRegion + " not found")
+                );
         return productRepository.getProductsByCategoryIdAndRegionId(idCategory, idRegion);
     }
 
