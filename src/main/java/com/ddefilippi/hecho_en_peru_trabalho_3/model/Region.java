@@ -23,7 +23,7 @@ public class Region {
     @GenericGenerator(
             name = "region_generator",
             parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "REG"),
-            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.id_generator.IdGenerator"
+            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.util.IdGenerator"
     )
     private String idRegion;
     private String name;

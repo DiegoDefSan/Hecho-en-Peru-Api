@@ -23,7 +23,7 @@ public class Handcraft {
     @GenericGenerator(
             name = "handcraft_generator",
             parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "HAND"),
-            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.id_generator.IdGenerator"
+            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.util.IdGenerator"
     )
     private String idHandcraft;
     private String name;

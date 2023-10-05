@@ -1,4 +1,4 @@
-package com.ddefilippi.hecho_en_peru_trabalho_3.id_generator;
+package com.ddefilippi.hecho_en_peru_trabalho_3.util;
 
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
