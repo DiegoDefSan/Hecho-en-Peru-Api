@@ -18,7 +18,7 @@ public class Product {
     @GenericGenerator(
             name = "product_generator",
             parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "PROD"),
-            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.id_generator.IdGenerator"
+            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.util.IdGenerator"
     )
     private String idProduct;
     private String name;
