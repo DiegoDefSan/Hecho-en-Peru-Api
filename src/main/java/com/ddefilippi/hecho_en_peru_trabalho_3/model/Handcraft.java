@@ -31,4 +31,9 @@ public class Handcraft {
 
     @OneToMany(mappedBy = "handcraft")
     private List<Product> products = new ArrayList<>();
+
+    public Handcraft(String name, String history) {
+        this.name = name;
+        this.history = history;
+    }
 }
