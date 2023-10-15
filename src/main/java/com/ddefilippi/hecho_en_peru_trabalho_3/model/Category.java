@@ -23,11 +23,15 @@ public class Category {
     @GenericGenerator(
             name = "category_generator",
             parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "CAT"),
-            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.id_generator.IdGenerator"
+            strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.util.IdGenerator"
     )
     private String idCategory;
     private String name;
 
     @OneToMany(mappedBy = "category")
     private List<Product> products = new ArrayList<>();
+
+    public Category(String name) {
+        this.name = name;
+    }
 }
