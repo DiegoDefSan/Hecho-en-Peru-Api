@@ -27,8 +27,11 @@ public class Region {
     )
     private String idRegion;
     private String name;
-    private String history;
 
     @OneToMany(mappedBy = "region")
     private List<Product> products = new ArrayList<>();
+
+    public Region(String name) {
+        this.name = name;
+    }
 }
