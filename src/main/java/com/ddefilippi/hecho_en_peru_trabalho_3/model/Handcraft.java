@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="handcraft")
+@Table(name="handcrafters")
 public class Handcraft {
 
     @Id

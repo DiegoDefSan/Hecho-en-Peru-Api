@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="product")
+@Table(name="products")
 public class Product {
 
     @Id
