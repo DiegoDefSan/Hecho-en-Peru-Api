@@ -23,6 +23,9 @@ public class Product {
     private String idProduct;
     private String name;
     private double price;
+    private int stock;
+    private String imagePath;
+    private double rating;
     private String history;
     private String details;
 
@@ -38,13 +41,5 @@ public class Product {
     @JoinColumn(name = "idHandcraft")
     private Handcraft handcraft;
 
-    public Product(String name, double price, String history, String details, Category category, Region region, Handcraft handcraft) {
-        this.name = name;
-        this.price = price;
-        this.history = history;
-        this.details = details;
-        this.category = category;
-        this.region = region;
-        this.handcraft = handcraft;
-    }
+
 }
