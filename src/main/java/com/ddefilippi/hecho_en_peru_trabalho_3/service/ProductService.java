@@ -152,4 +152,9 @@ public class ProductService {
     public Page<Product> getProductsByPage(Pageable pageable) {
         return productRepository.getProductsByPage(pageable);
     }
+
+    // Get products by a list of categories
+    public List<Product> getProductsByCategories(List<String> idCategories) {
+        return productRepository.getProductsByCategories(idCategories);
+    }
 }
