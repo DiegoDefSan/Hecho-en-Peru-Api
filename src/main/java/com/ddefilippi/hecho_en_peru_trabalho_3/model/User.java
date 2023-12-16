@@ -7,9 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
+@JsonIgnoreProperties(value = {"carts"})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,5 +29,9 @@ public class User {
     private String name;
 
     @OneToMany(mappedBy = "user")
-    private List<Cart> carts;
+    private List<Cart> carts = new ArrayList<>();
+
+    public User(String name) {
+        this.name = name;
+    }
 }
