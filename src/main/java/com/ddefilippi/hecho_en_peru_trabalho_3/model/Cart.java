@@ -1,5 +1,6 @@
 package com.ddefilippi.hecho_en_peru_trabalho_3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +8,10 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+@JsonIgnoreProperties(value = {"productCarts"})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,4 +31,7 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "idUser")
     private User user;
+
+    @OneToMany(mappedBy = "cart")
+    private List<ProductCart> productCarts = new ArrayList<>();
 }
