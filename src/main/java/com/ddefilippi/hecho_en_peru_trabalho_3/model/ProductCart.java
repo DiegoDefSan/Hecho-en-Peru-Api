@@ -1,9 +1,6 @@
 package com.ddefilippi.hecho_en_peru_trabalho_3.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,4 +21,12 @@ public class ProductCart {
     )
     private String idProductCart;
     private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "idCart")
+    private Cart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "idProduct")
+    private Product product;
 }
