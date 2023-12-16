@@ -25,4 +25,7 @@ public class User {
     )
     private String idUser;
     private String name;
+
+    @OneToMany(mappedBy = "user")
+    private List<Cart> carts;
 }
