@@ -1,13 +1,7 @@
 package com.ddefilippi.hecho_en_peru_trabalho_3;
 
-import com.ddefilippi.hecho_en_peru_trabalho_3.model.Category;
-import com.ddefilippi.hecho_en_peru_trabalho_3.model.Handcraft;
-import com.ddefilippi.hecho_en_peru_trabalho_3.model.Product;
-import com.ddefilippi.hecho_en_peru_trabalho_3.model.Region;
-import com.ddefilippi.hecho_en_peru_trabalho_3.repository.CategoryRepository;
-import com.ddefilippi.hecho_en_peru_trabalho_3.repository.HandcraftRepository;
-import com.ddefilippi.hecho_en_peru_trabalho_3.repository.ProductRepository;
-import com.ddefilippi.hecho_en_peru_trabalho_3.repository.RegionRepository;
+import com.ddefilippi.hecho_en_peru_trabalho_3.model.*;
+import com.ddefilippi.hecho_en_peru_trabalho_3.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,17 +24,18 @@ public class HechoEnPeruTrabalho3Application implements org.springframework.boot
 	@Autowired
 	private ProductRepository productRepository;
 
-	public static void main(String[] args) {
-		SpringApplication.run(HechoEnPeruTrabalho3Application.class, args);
-	}
+	@Autowired
+	private UserRepository userRepository;
 
-	@Override
-	public void run(String... args) throws Exception {
+	private List<Category> categoryList;
+	private List<Handcraft> handcraftList;
+	private List<Region> regionList;
+	private List<Product> productList;
+	private List<User> userList;
 
-		List<Category> cateroryList = new ArrayList<>(
+	private void initCategoryList() {
+		categoryList = new ArrayList<>(
 			List.of(
-					// Change the categories names to english
-
 				new Category("Accessories"),
 				new Category("Furniture"),
 				new Category("Ponchos"),
@@ -50,9 +45,11 @@ public class HechoEnPeruTrabalho3Application implements org.springframework.boot
 			)
 		);
 
-		categoryRepository.saveAll(cateroryList);
+		categoryRepository.saveAll(categoryList);
+	}
 
-		List<Handcraft> handcraftList = new ArrayList<>(
+	private void initHandcraftList() {
+		handcraftList = new ArrayList<>(
 			List.of(
 				new Handcraft(
 				"Carlos Quispe Cárdenas",
@@ -66,8 +63,10 @@ public class HechoEnPeruTrabalho3Application implements org.springframework.boot
 		);
 
 		handcraftRepository.saveAll(handcraftList);
+	}
 
-		List<Region> regionList = new ArrayList<>(
+	private void initRegionList() {
+		regionList = new ArrayList<>(
 			List.of(
 				new Region("Amazonas"),
 				new Region("Apurimac"),
@@ -98,177 +97,204 @@ public class HechoEnPeruTrabalho3Application implements org.springframework.boot
 		);
 
 		regionRepository.saveAll(regionList);
+	}
 
-		List<Product> productList = new ArrayList<>(
+	private void initUserList() {
+		userList = new ArrayList<>(
 			List.of(
-				new Product(
-					"Poncho de lana",
-					150.00,
-					50,
-					"poncho-lana.jpg",
-					4.5,
-					"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-					cateroryList.get(2),
-					regionList.get(3),
-					handcraftList.get(0)
-				),
-				new Product(
-						"Poncho de lana tejido a crochet",
-						170.00,
-						50,
-						"poncho-tejido-crochet.jpg",
-						4.5,
-						"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						cateroryList.get(2),
-						regionList.get(5),
-						handcraftList.get(0)
-				),
-				new Product(
-						"Plato Urpi",
-						75.00,
-						50,
-						"plato-urpi.jpg",
-						3.5,
-						"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						// Category decorations
-						cateroryList.get(4),
-						// Region Ayacucho
-						regionList.get(2),
-						handcraftList.get(1)
-				),
-				new Product(
-						"Aretes de fibra de chambira",
-						30.00,
-						50,
-						"aretes-hilo.jpg",
-						4.5,
-						"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						// Category accessories
-						cateroryList.get(0),
-						// Region Amazonas
-						regionList.get(0),
-						handcraftList.get(1)
-				),
-				new Product(
-						"Collar de mostacilla",
-						172.50,
-						50,
-						"collar-mostacilla.jpg",
-						3.7,
-						"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						// Category accessories
-						cateroryList.get(0),
-						// Region Amazonas
-						regionList.get(0),
-						handcraftList.get(1)
-				),
-				new Product(
-						"Set de cojines de lana",
-						120.00,
-						50,
-						"cojin-lana.jpg",
-						4.5,
-						"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						// Category decorations
-						cateroryList.get(4),
-						// Region Ayacucho
-						regionList.get(2),
-						handcraftList.get(0)
-				),
-				new Product(
-						"Chalina tejida",
-						70.00,
-						50,
-						"chalina-tejida.jpg",
-						4.5,
-						"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						// Category scarfs
-						cateroryList.get(3),
-						// Region Apurimac
-						regionList.get(1),
-						handcraftList.get(0)
-				),
-				new Product(
-						"Banco tejido de lana",
-						550.00,
-						50,
-						"banco-tejido.jpg",
-						4.5,
-						"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						// Category furniture
-						cateroryList.get(1),
-						// Region Ayacucho
-						regionList.get(2),
-						handcraftList.get(0)
-				),
-				new Product(
-						"Baúl tejido",
-						80.00,
-						50,
-						"baul-tejido.jpg",
-						4.5,
-						"The straw hat is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of straw and is used to protect against the sun.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						// Category furniture
-						cateroryList.get(1),
-						// Region Huancavelica
-						regionList.get(12),
-						handcraftList.get(1)
-				),
-				new Product(
-						"Poncho de lana con capucha",
-						115.00,
-						50,
-						"poncho-capucha.jpg",
-						4.5,
-						"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						// Category ponchos
-						cateroryList.get(2),
-						// Region Ayacucho
-						regionList.get(2),
-						handcraftList.get(0)
-				),
-				new Product(
-						"Chullo de lana con orejeras",
-						50.00,
-						50,
-						"chullo-blanco.jpeg",
-						4.5,
-						"The straw hat is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of straw and is used to protect against the sun.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						// Category hats
-						cateroryList.get(5),
-						// Region Lima
-						regionList.get(4),
-						handcraftList.get(1)
-				),
-				new Product(
-						"Cuadro tejido de lana",
-						150.00,
-						50,
-						"cuadro-tejido.jpg",
-						4.5,
-						"The straw hat is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of straw and is used to protect against the sun.",
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
-						// Category decorations
-						cateroryList.get(4),
-						// Region Lima
-						regionList.get(4),
-						handcraftList.get(1)
-				)
+				new User("Diego")
 			)
 		);
 
+		userRepository.saveAll(userList);
+	}
+
+	private void initProductsList() {
+		productList = new ArrayList<>(
+				List.of(
+						new Product(
+								"Poncho de lana",
+								150.00,
+								50,
+								"poncho-lana.jpg",
+								4.5,
+								"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								categoryList.get(2),
+								regionList.get(3),
+								handcraftList.get(0)
+						),
+						new Product(
+								"Poncho de lana tejido a crochet",
+								170.00,
+								50,
+								"poncho-tejido-crochet.jpg",
+								4.5,
+								"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								categoryList.get(2),
+								regionList.get(5),
+								handcraftList.get(0)
+						),
+						new Product(
+								"Plato Urpi",
+								75.00,
+								50,
+								"plato-urpi.jpg",
+								3.5,
+								"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								// Category decorations
+								categoryList.get(4),
+								// Region Ayacucho
+								regionList.get(2),
+								handcraftList.get(1)
+						),
+						new Product(
+								"Aretes de fibra de chambira",
+								30.00,
+								50,
+								"aretes-hilo.jpg",
+								4.5,
+								"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								// Category accessories
+								categoryList.get(0),
+								// Region Amazonas
+								regionList.get(0),
+								handcraftList.get(1)
+						),
+						new Product(
+								"Collar de mostacilla",
+								172.50,
+								50,
+								"collar-mostacilla.jpg",
+								3.7,
+								"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								// Category accessories
+								categoryList.get(0),
+								// Region Amazonas
+								regionList.get(0),
+								handcraftList.get(1)
+						),
+						new Product(
+								"Set de cojines de lana",
+								120.00,
+								50,
+								"cojin-lana.jpg",
+								4.5,
+								"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								// Category decorations
+								categoryList.get(4),
+								// Region Ayacucho
+								regionList.get(2),
+								handcraftList.get(0)
+						),
+						new Product(
+								"Chalina tejida",
+								70.00,
+								50,
+								"chalina-tejida.jpg",
+								4.5,
+								"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								// Category scarfs
+								categoryList.get(3),
+								// Region Apurimac
+								regionList.get(1),
+								handcraftList.get(0)
+						),
+						new Product(
+								"Banco tejido de lana",
+								550.00,
+								50,
+								"banco-tejido.jpg",
+								4.5,
+								"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								// Category furniture
+								categoryList.get(1),
+								// Region Ayacucho
+								regionList.get(2),
+								handcraftList.get(0)
+						),
+						new Product(
+								"Baúl tejido",
+								80.00,
+								50,
+								"baul-tejido.jpg",
+								4.5,
+								"The straw hat is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of straw and is used to protect against the sun.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								// Category furniture
+								categoryList.get(1),
+								// Region Huancavelica
+								regionList.get(12),
+								handcraftList.get(1)
+						),
+						new Product(
+								"Poncho de lana con capucha",
+								115.00,
+								50,
+								"poncho-capucha.jpg",
+								4.5,
+								"The poncho is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of wool and is used to protect against the cold.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								// Category ponchos
+								categoryList.get(2),
+								// Region Ayacucho
+								regionList.get(2),
+								handcraftList.get(0)
+						),
+						new Product(
+								"Chullo de lana con orejeras",
+								50.00,
+								50,
+								"chullo-blanco.jpeg",
+								4.5,
+								"The straw hat is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of straw and is used to protect against the sun.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								// Category hats
+								categoryList.get(5),
+								// Region Lima
+								regionList.get(4),
+								handcraftList.get(1)
+						),
+						new Product(
+								"Cuadro tejido de lana",
+								150.00,
+								50,
+								"cuadro-tejido.jpg",
+								4.5,
+								"The straw hat is a typical garment of the Andean region of Peru. It is a rectangular piece of fabric with a hole in the center for the head. It is usually made of straw and is used to protect against the sun.",
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae ero",
+								// Category decorations
+								categoryList.get(4),
+								// Region Lima
+								regionList.get(4),
+								handcraftList.get(1)
+						)
+				)
+		);
+
 		productRepository.saveAll(productList);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+
+		initCategoryList();
+		initHandcraftList();
+		initRegionList();
+		initProductsList();
+		initUserList();
+
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(HechoEnPeruTrabalho3Application.class, args);
 	}
 
 }
