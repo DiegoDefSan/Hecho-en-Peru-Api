@@ -23,4 +23,8 @@ public class Cart {
     )
     private String idCart;
     private LocalDateTime date;
+
+    @ManyToOne
+    @JoinColumn(name = "idUser")
+    private User user;
 }
