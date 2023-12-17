@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="region")
+@Table(name="regions")
 public class Region {
 
     @Id

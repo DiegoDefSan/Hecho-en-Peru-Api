@@ -109,5 +109,15 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     )
     Page<Product> getProductsByPage(Pageable pageable);
 
+    // Get products by a list of categories
+    @Query("SELECT p " +
+            "FROM Product p " +
+            "LEFT OUTER JOIN FETCH p.category " +
+            "LEFT OUTER JOIN FETCH p.handcraft " +
+            "LEFT OUTER JOIN FETCH p.region " +
+            "WHERE p.category.idCategory IN :idCategories " +
+            "ORDER BY p.idProduct")
+    List<Product> getProductsByCategories(List<String> idCategories);
+
 }
 

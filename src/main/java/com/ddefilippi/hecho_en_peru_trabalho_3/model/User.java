@@ -10,28 +10,28 @@ import org.hibernate.annotations.GenericGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonIgnoreProperties(value = {"products"})
+
+@JsonIgnoreProperties(value = {"carts"})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="categories")
-public class Category {
-
+@Table(name="users")
+public class User {
     @Id
-    @GeneratedValue(generator = "category_generator")
+    @GeneratedValue(generator = "user_generator")
     @GenericGenerator(
-            name = "category_generator",
-            parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "CAT"),
+            name = "user_generator",
+            parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "USER"),
             strategy = "com.ddefilippi.hecho_en_peru_trabalho_3.util.IdGenerator"
     )
-    private String idCategory;
+    private String idUser;
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Cart> carts = new ArrayList<>();
 
-    public Category(String name) {
+    public User(String name) {
         this.name = name;
     }
 }

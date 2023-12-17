@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("http://localhost:5173")
 @RestController
 @RequestMapping("/products") // http://localhost:8080/products
 public class ProductController {
@@ -106,5 +107,4 @@ public class ProductController {
                 products.getContent()
         );
     }
-
 }
