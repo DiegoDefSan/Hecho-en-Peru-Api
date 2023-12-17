@@ -1,6 +1,7 @@
 package com.ddefilippi.hecho_en_peru_trabalho_3.controllers;
 
 
+import com.ddefilippi.hecho_en_peru_trabalho_3.model.Product;
 import com.ddefilippi.hecho_en_peru_trabalho_3.model.ProductCart;
 import com.ddefilippi.hecho_en_peru_trabalho_3.service.ProductCartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,10 @@ public class ProductCartController {
     @PostMapping("/addProductCart")
     public ProductCart addProductCart(@RequestBody ProductCart productCart) {
         return productCartService.saveProductCart(productCart);
+    }
+
+    @PostMapping("/addProductsCarts")
+    public List<ProductCart> addProductsCarts(@RequestBody List<ProductCart> productsCarts) {
+        return productCartService.saveProductsCarts(productsCarts);
     }
 }

@@ -19,4 +19,8 @@ public class ProductCartService {
     public ProductCart saveProductCart(ProductCart productCart) {
         return productCartRepository.save(productCart);
     }
+
+    public List<ProductCart> saveProductsCarts(List<ProductCart> productsCarts) {
+        return productCartRepository.saveAll(productsCarts);
+    }
 }
