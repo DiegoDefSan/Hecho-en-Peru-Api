@@ -20,4 +20,9 @@ public class CartService {
     public Cart saveCart(Cart cart) {
         return cartRepository.save(cart);
     }
+
+    public String deleteCart(String id) {
+        cartRepository.deleteById(id);
+        return "Cart removed !! " + id;
+    }
 }

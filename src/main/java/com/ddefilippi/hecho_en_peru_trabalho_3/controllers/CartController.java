@@ -24,4 +24,9 @@ public class CartController {
     public Cart addCart(@RequestBody Cart cart) {
         return cartService.saveCart(cart);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteCart(@PathVariable String id) {
+        return cartService.deleteCart(id);
+    }
 }
